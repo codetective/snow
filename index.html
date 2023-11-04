@@ -4,6 +4,9 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="details of your file encryption notice are displayed, find out more ..." />
+        <title>YOUR FILES ARE ENCRYPTED BY SN0W</title>
+        <meta name="title" content="YOUR FILES ARE ENCRYPTED BY SN0W" />
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="./assets/app.css" />
     </head>
@@ -13,7 +16,7 @@
             <section class="py-10">
                 <div id="top_border" class="text-center w-fit">
                     <h1 id="bottom_border"
-                        class="font-bold  spaced-font text-4xl sm:text-5xl md:text-7xl lg:text-8xl py-5 px-2 md:px-10">
+                        class="font-bold spaced-font text-4xl sm:text-5xl md:text-7xl lg:text-8xl py-5 px-2 md:px-10">
                         <span class="font-bold"> YOUR FILES </span>
                         <br />
                         <span style="line-height: 1.8; white-space: nowrap" class="bg-brand-blue text-white">
@@ -21,17 +24,17 @@
                         </span>
                         <br />
                         <span class="font-bold">
-                            BY SN<span class="text-brand-blue ">0</span>W
+                            BY SN<span class="text-brand-blue">0</span>W
                         </span>
                     </h1>
                 </div>
             </section>
             <!-- end of top section -->
             <section id="timer" class="w-full py-10 flex flex-col items-center justify-center gap-10">
-                <h1 class="text-brand-blue text-xl font-semibold">
-                    Dealine : 17 Nov, 2023 21:05 UTC
+                <h1 id="deadline-box" class="text-brand-blue text-xl font-semibold">
+                    Deadline : 17 Nov, 2023 21:05 UTC
                 </h1>
-                <div class="flex flex-col shadow-sm md:flex-row bg-white w-full gap-10 p-10">
+                <div class="flex flex-col shadow-sm md:flex-row bg-white w-full gap-10 p-10 justify-center items-start">
                     <img src="./assets/images/logo.jpeg" alt="logo" class="object-contain h-[100px]" />
                     <div>
                         <div>
@@ -45,10 +48,10 @@
                             </p>
                         </div>
                         <div class="py-4 font-bold text-brand-blue uppercase text-xl">
-                            <h1>all available data will be published !</h1>
+                            <h1>all available data will be published!</h1>
                         </div>
                         <div
-                            class="flex flex-col md:flex-row  justify-between uppercase text-gray-400 text-xs md:text-sm heading-font">
+                            class="flex flex-col md:flex-row justify-between uppercase text-gray-400 text-xs md:text-sm heading-font">
                             <div class="h-flex">
                                 <b> UPLOADED : </b><span> 03 Nov, 2023 15:00 utc </span>
                             </div>
@@ -64,11 +67,11 @@
                     <div class="text-center text-gray-400">
                         <small>Time left for files to be available :</small>
                     </div>
-                    <div class="bg-brand-blue text-xl text-white font-bold py-2 px-10 rounded">
-                        13D 13h 10m 17s
-                        </>
+                    <div id="ct-timer"
+                        class="min-w-[220px] bg-brand-blue text-xl text-white font-bold py-2 px-10 rounded text-center">
+                        0D 0h 0m 0s
                     </div>
-
+                </div>
             </section>
             <!-- end of middle section -->
             <section id="info" class="py-10">
@@ -106,6 +109,30 @@
                 </div>
             </section>
         </main>
+
+        <script>
+            const deadline = "Nov 5, 2023 21:05:00"
+            const timezone = 'UTC'
+
+            document.querySelector('#deadline-box').innerHTML = `Deadline : ${deadline} ${timezone}`
+
+
+            const countDownDate = new Date(deadline).getTime();
+            const x = setInterval(function () {
+                const now = new Date().getTime();
+                const diff = countDownDate - now;
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                document.getElementById("ct-timer").innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+                if (diff < 0) {
+                    clearInterval(x);
+                    document.getElementById("ct-timer").innerHTML = "TIME EXPIRED";
+                }
+            }, 1000);
+        </script>
     </body>
 
 </html>
